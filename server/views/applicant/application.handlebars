@@ -36,28 +36,28 @@
             <div class="col-md-6 mx-auto">
               <div class="form-group">
                 <input type="text" name="firstName" class="form-control" placeholder="First Name"
-                  required="required" value="{{applicant.firstName}}"/>
+                  required="required" value="{{applicant.firstName}}" autocomplete="off"/>
               </div>
             </div>
 
             <div class="col-md-6 mx-auto">
               <div class="form-group">
                 <input type="text" name="lastName" class="form-control" placeholder="Last Name"
-                  required="required" value="{{applicant.lastName}}"/>
+                  required="required" value="{{applicant.lastName}}" autocomplete="off"/>
               </div>
             </div>
 
             <div class="col-md-6 mx-auto">
               <div class="form-group">
                 <input type="text" name="middleName" class="form-control" placeholder="Middle Name"
-                  required="required" value="{{applicant.middleName}}"/>
+                  required="required" value="{{applicant.middleName}}" autocomplete="off"/>
               </div>
             </div>
 
             <div class="col-md-6 mx-auto">
               <div class="form-group">
                 <input type="text" name="dateOfBirth" placeholder="Date Of Birth MM-DD-YYYY"
-                class="form-control date-picker" value="{{applicant.dateOfBirth}}"/>
+                class="form-control date-picker" value="{{applicant.dateOfBirth}}" autocomplete="off"/>
               </div>
             </div>
 
@@ -108,7 +108,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="tel" class="form-control" name="phoneNo" placeholder="Mobile No." required="required" value="{{applicant.phoneNo}}" autocomplete="off"/>
+            <input type="tel" class="form-control" name="phoneNo" placeholder="Mobile No." required="required" value="{{applicant.phoneNo}}" autocomplete="off" maxlength="11"/>
           </div>
         </div>
       </div>

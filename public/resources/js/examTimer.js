@@ -1,14 +1,16 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var UI = {
-    hour: $("#hour"),
-    minute: $("#minute"),
-    seconds: $("#seconds")
+    hour: $('#hour'),
+    minute: $('#minute'),
+    seconds: $('#seconds'),
   };
+
+  var timerInterval;
 
   function padZero(value) {
     padded = value;
     if (value < 10 && value >= 0) {
-      padded = 0 + "" + value;
+      padded = 0 + '' + value;
     }
     return padded;
   }
@@ -35,7 +37,7 @@ $(document).ready(function() {
     return {
       hour: padZero(hour),
       minute: padZero(minute),
-      seconds: padZero(seconds)
+      seconds: padZero(seconds),
     };
   }
 
@@ -49,38 +51,43 @@ $(document).ready(function() {
     UI.hour.text(current.hour);
     UI.minute.text(current.minute);
     UI.seconds.text(current.seconds);
+    if (current.hour == 0 && current.minute == 0 && current.seconds == 0) {
+      clearInterval(timerInterval);
+      window.location = '/applicant/submit/exam/?sid=' + $('#sid').val();
+    }
   }
 
   //-- ajax Request
-  function getExamTime(){
-    $.get("/applicant/exam/time/", updateTimerUI);
+  function getExamTime() {
+    $.get('/applicant/exam/time/', updateTimerUI);
   }
 
-  function setExamTime(){
+  function setExamTime() {
     let time = {
       hour: UI.hour.text(),
       minute: UI.minute.text(),
-      second: UI.seconds.text()
-    }
+      second: UI.seconds.text(),
+    };
     // console.log(time);
-    $.post("/applicant/update/exam/time/",time, timeSet);
+    $.post('/applicant/update/exam/time/', time, timeSet);
   }
 
-  function timeSet(data){
+  function timeSet(data) {
     console.log(data);
   }
 
-  function updateTimerUI(examTime){
-    // console.log(examTime);
+  function updateTimerUI(examTime) {
+    console.log(examTime);
     UI.hour.text(examTime.hour);
-    UI.minute.text(examTime.minute);
-    UI.seconds.text(examTime.second);
+    UI.minute.text(examTime.minutes);
+    UI.seconds.text(examTime.seconds);
+
+    //-- set the interval
+    timerInterval = setInterval(function () {
+      currentTime();
+      setExamTime();
+    }, 1000);
   }
-  //-- set the interval
-  setInterval(function(){
-    setExamTime();
-    currentTime();
-  }, 1000);
 
   //-- setup time
   getExamTime();
