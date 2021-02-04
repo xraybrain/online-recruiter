@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-lg-10 col-md-9 normal-height bg-gray">
+      <div class="container-fluid mt-1 mb-1 no-pd">
+        <div class="row">
+          <div class="col-md-10 mb-2">
+            <form action="" method="GET">
+              <div class="form-control d-flex align-items-center">
+                <input type="search" name="searchText" class="w-100" placeholder="Search for schedule by date" />
+                <button type="submit" class="btn btn-sm bg-white">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-2 mb-2 ml-auto">
+            <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#newModal">
+              <i class="fas fa-plus"></i>
+              schedule
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title d-flex align-items-center m-0 p-0">
+            <i class="fas fa-clock mr-1 text-primary"></i>
+            <span>
+              Recruitment Schedule(s)
+            </span>
+          </h5>
+        </div>
+        <div class="card-body scroll">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  #sn
+                </th>
+                <th>
+                  Start Date
+                </th>
+                <th>
+                  End Date
+                </th>
+                <th class="text-right">
+                  <i class="fas fa-cog"></i>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each schedules}}
+              <tr>
+                <td>{{sn}}</td>
+                <td>{{startDate}}</td>
+                <td>{{endDate}}</td>
+                <td class="text-right">
+                  <form action="/admin/delete/schedule" method="GET">
+                    <div class="form-group">
+                      <input type="hidden" name="rid" value="{{id}}" />
+                      <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                        <span>Delete</span>
+                      </button>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- The New Recruit schedule Modal -->
+<div class="modal fade" id="newModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Recruitment Schedule</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="/admin/save/recruitment/schedule/" method="POST">
+          <div class="form-group">
+            <input type="text" name="startDate" placeholder="Start Date" class="form-control date-picker"
+              readonly="readonly" />
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="endDate" placeholder="End Date" class="form-control date-picker"
+              readonly="readonly" />
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-success">
+              <i class="fas fa-save"></i>
+              Save schedule
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+<div class="container-fluid">
+  <div class="row">
+    {{> _admin_sidebar}}
+    <div class="col-lg-10 col-md-9">
+      <div class="container-fluid no-pd">
+
+        <div class="d-flex justify-content-between flex-wrap align-items-center">
+          <div>
+            <span class="mr-3">{{user.userName}}, Howdy</span>
+            <span id="clock">12:00 AM</span>
+          </div>
+          <div class="dropdown my-2">
+            <a href="#" class="btn btn-sm btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+              <i class="fas fa-user"></i>
+              <span>Account</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="#" class="dropdown-item" data-toggle="modal" data-target="#edit-profile">
+                <i class="fas fa-edit"></i>
+                Edit Profile
+              </a>
+              <a href="#" class="dropdown-item" data-toggle="modal" data-target="#reset-password">
+                <i class="fas fa-cog"></i>
+                Reset Password
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row bg-gray p-1 align-items-center">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="card border-primary">
+                  <div class="card-body text-center">
+                    <p class="text-center mb-4">
+                      <i class="fas fa-users icon-lg text-info"></i>
+                    </p>
+                    <a href="/admin/applicants/" class="btn btn-sm btn-outline-success">
+                      Manage Applicants
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <div class="card border-primary">
+                  <div class="card-body text-center">
+                    <p class="text-center mb-4">
+                      <i class="fas fa-tasks icon-lg text-info"></i>
+                    </p>
+                    <a href="/admin/vacancy/" class="btn btn-sm btn-outline-success">
+                      Manage Vacancies
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="card border-primary">
+                  <div class="card-body text-center">
+                    <p class="text-center mb-4">
+                      <i class="fas fa-newspaper icon-lg text-info"></i>
+                    </p>
+                    <a href="/admin/exams/mgt/" class="btn btn-sm btn-outline-success">
+                      Manage Exam
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <div class="card border-primary">
+                  <div class="card-body text-center">
+                    <p class="text-center mb-4">
+                      <i class="fas fa-clock icon-lg text-info"></i>
+                    </p>
+                    <a href="/admin/recruitment/schedules/" class="btn btn-sm btn-outline-success">
+                      Recruitment Schedule
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- admin mgt -->
+
+          <!-- layouts -->
+          <div class="col-md-3 mb-3">
+            <div class="card border-warning">
+              <div class="card-body d-flex justify-content-between">
+                <span>
+                  <i class="fas fa-users fa-3x text-primary"></i>
+                </span>
+                <span>
+                  <p class="text-right">
+                    Total Applicants
+                  </p>
+                  <p class="font-weight-bold text-right">{{total}}</p>
+                </span>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="p-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="calendar-wrapper"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade mt-5" id="edit-profile">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted d-flex align-items-center">
+          <i class="fas fa-edit mr-1"></i>
+          <span>Edit Profile</span>
+        </h5>
+        <a href="javascript: void(0)" class="close" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/update/profile" method="post">
+          <div class="form-group">
+            <div class="form-control">
+              <input type="text" name="userName" required class="w-100" placeholder="Username" autocomplete="off"
+                value="{{user.userName}}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-control">
+              <input type="email" name="emailAddress" required class="w-100" placeholder="Email Address"
+                autocomplete="off" value="{{user.emailAddress}}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-success">
+              Update Profile
+              <i class="fas fa-check-circle ml-1"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade mt-5" id="reset-password">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted d-flex align-items-center">
+          <i class="fas fa-cog mr-1"></i>
+          <span>Reset Password</span>
+        </h5>
+        <a href="javascript: void(0)" class="close" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/reset/password" method="post">
+          <div class="form-group">
+            <div class="form-control">
+              <input type="password" name="password" required class="w-100" placeholder="Password" autocomplete="off" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-control">
+              <input type="password" name="confirmPassword" required class="w-100" placeholder="Confirm Password"
+                autocomplete="off" />
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-success">
+              Reset
+              <i class="fas fa-check-circle ml-1"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

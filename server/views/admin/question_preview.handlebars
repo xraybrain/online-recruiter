@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-md-9 col-lg-10">
+      <div class="container-fluid mt-1 no-pd">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title d-flex align-items-center">
+              <i class="fas fa-list-alt mr-1 text-primary"></i>
+              <span>
+                Exam Question Preview
+              </span>
+            </h5>
+          </div>
+
+          <div class="card-body panel scroll">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#sn</th>
+                  <th class="wide">Question</th>
+                  <th>Option A</th>
+                  <th>Option B</th>
+                  <th>Option C</th>
+                  <th>Option D</th>
+                  <th>Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each examQuestion}}
+                <tr>
+                  <td>{{SN}}</td>
+                  <td class="text-justify">{{QUESTION}}</td>
+                  <td>{{OPTIONA}}</td>
+                  <td>{{OPTIONB}}</td>
+                  <td>{{OPTIONC}}</td>
+                  <td>{{OPTIOND}}</td>
+                  <td>{{ANSWER}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <div class="d-flex justify-content-between">
+              <a href="/admin/exams/mgt/" class="btn btn-sm btn-danger ">
+                <i class="fas fa-arrow-left"></i>
+                Back
+              </a>
+              <form action="/admin/save/exam/question/" method="POST">
+                <input type="hidden" name="sid" value="{{sid}}" />
+                <input type="hidden" name="fileName" value="{{fileName}}" />
+                <button class="btn btn-sm btn-success">
+                  Save Exam Questions
+                  <i class="fas fa-save"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

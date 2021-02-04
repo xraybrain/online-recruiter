@@ -1,0 +1,246 @@
+<div class="container-fluid my-3">
+  <div class="col-12 col-md-10 col-lg-9 mx-auto">
+    {{>_applicant_sidebar}}
+    <div id="container-pane"></div>
+  </div>
+</div>
+
+
+<!-- Templates -->
+
+<!-- Applicant Details Template -->
+<script type="mustache/template" id="personnal-form">
+<h5 class="text-center text-muted my-3">Personnal Details</h5>
+<hr/>
+<div class="row align-items-center">
+  <div class="col-md-5 mx-auto">
+    <form enctype="multipart/form-data" method="POST" id="passportUploader">
+      <div class="center">
+        <img src="{{#if applicant.pictureDir}}{{applicant.pictureDir}}{{else}}/resources/img/user.png{{/if}}" class="passport" alt="Applicant passport Avatar" id="passport"/>
+        <div class="form-group mt-2">
+          <label for="fileUpload" class="btn btn-primary">
+            <i class="fas fa-folder text-warning"></i>
+            Select Passport
+          </label>
+          <input type="file" name="fileToUpload" class="hidden" id="fileUpload" />
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-7">
+    <form action="/applicant/update/personal/detail/" method="post" id="personal-details-form">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="form-group">
+                <input type="text" name="firstName" class="form-control" placeholder="First Name"
+                  required="required" value="{{applicant.firstName}}"/>
+              </div>
+            </div>
+
+            <div class="col-md-6 mx-auto">
+              <div class="form-group">
+                <input type="text" name="lastName" class="form-control" placeholder="Last Name"
+                  required="required" value="{{applicant.lastName}}"/>
+              </div>
+            </div>
+
+            <div class="col-md-6 mx-auto">
+              <div class="form-group">
+                <input type="text" name="middleName" class="form-control" placeholder="Middle Name"
+                  required="required" value="{{applicant.middleName}}"/>
+              </div>
+            </div>
+
+            <div class="col-md-6 mx-auto">
+              <div class="form-group">
+                <input type="text" name="dateOfBirth" placeholder="Date Of Birth MM-DD-YYYY"
+                class="form-control date-picker" value="{{applicant.dateOfBirth}}"/>
+              </div>
+            </div>
+
+            <div class="col-md-6 mx-auto">
+              <div class="form-group">
+                  <select name="vacancy_id" class="form-control">
+                  <option value="">Select Position</option>
+                  {{#each vacancies}}
+                  <option value="{{id}}">{{name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="col-md-3 ml-auto p-0 mt-2">
+        <input type="hidden" name="pictureDir" id="picDir" />
+        <button type="submit" class="btn btn-block btn-success">
+          <div class="d-flex align-items-center justify-content-between">
+            Next
+            <i class="fas fa-chevron-circle-right"></i>
+          </div>
+        </button>
+      </div>
+          
+    </form>
+  </div>  
+</div>
+
+</script>
+
+<script type="mustache/template" id="contact-details">
+<h5 class="text-center text-muted mt-3">
+  Contact Details
+</h5>
+<hr/>
+<form action="/applicant/update/contact/" method="post" id="contact-details-form">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <input type="email" class="form-control" readonly="readonly" placeholder="Email Address" value="{{applicant.emailAddress}}"/>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="tel" class="form-control" name="phoneNo" placeholder="Mobile No." required="required" value="{{applicant.phoneNo}}" autocomplete="off"/>
+          </div>
+        </div>
+      </div>
+        <div class="row mt-1">
+          <div class="col-md-12">
+            <div class="form-group">
+              <textarea name="address" class="form-control" rows="3" placeholder="Residential Address" required="required" autocomplete="off">{{applicant.address}}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-2 ml-auto p-0 mt-2">
+        <button type="submit" class="btn btn-block btn-success">
+          <div class="d-flex align-items-center justify-content-between">
+            Next
+            <i class="fas fa-chevron-circle-right"></i>
+          </div>
+        </button>
+      </div>
+  </form>
+</script>
+
+<script type="mustache-template" id="cert">
+  <div class="row mb-1">
+    <div class="col-md-3">
+      <input type="text" name="school" class="form-control" placeholder="school name" />
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="title" class="form-control" placeholder="certificate" />
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="startDate" class="form-control date-picker" placeholder="start date" />
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="endDate" class="form-control date-picker" placeholder="end date" />
+    </div>
+  </div>
+</script>
+
+<script type="mustache/template" id="education-details">
+<h5 class="text-center text-muted mt-3">
+  Education Details
+</h5>
+<hr/>
+<div class="row">
+  <div class="col-md-8 mb-3">
+    <div class="card">
+      <div class="card-body scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>School Name</th>
+              <th>Certificate</th>
+              <th>start date</th>
+              <th>end date</th>
+            </tr>
+          </thead>
+          <tbody id="education-pane">
+            {{#each applicantEducation}}
+             <tr>
+              <td>{{school}}</td>
+              <td>{{title}}</td>
+              <td>{{startDate}}</td>
+              <td>{{endDate}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <form action="/applicant/save/education/" method="post" id="education-details-form">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="card-title text-muted">Certificates</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <input type="text" name="school" class="form-control" placeholder="school name" autocomplete="off"/>
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="title" class="form-control" placeholder="certificate" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="startDate" class="form-control date-picker" placeholder="start date" readonly />
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="endDate" class="form-control date-picker" placeholder="end date" autocomplete="off" readonly />
+          </div>
+        </div>
+
+        <div class="card-footer bg-white">
+          <button type="submit" class="btn btn-block btn-success">
+            Save
+            <i class="fas fa-check-circle"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <button type="button" class="btn btn-block btn-success write-exam mt-2">
+      Next
+      <i class="fas fa-chevron-circle-right"></i>
+    </button>
+  </div>
+</div>
+</script>
+
+<script type="mustache/template" id="applicant-education">
+   <tr>
+      <td>\{{school}}</td>
+      <td>\{{title}}</td>
+      <td>\{{startDate}}</td>
+      <td>\{{endDate}}</td>
+    </tr>
+</script>
+
+<!--
+<div class="col-md-2">
+  <button id="add-item-btn" class="btn btn-outline-success" data-target="#list-box" data-template="#cert">
+    <i class="fas fa-plus"></i>
+    more
+  </button>
+</div>
+<div class="col-md-2">
+  <button id="delete-item-btn" class="btn btn-outline-danger" data-target="#list-box">
+    delete
+    <i class="fas fa-trash"></i>
+  </button>
+</div>
+-->

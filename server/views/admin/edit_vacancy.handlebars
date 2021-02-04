@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-md-9 col-lg-10">
+      <div class="container-fluid normal-height mt-1 no-pd">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title d-flex align-items-center">
+              <i class="fas fa-edit mr-1 text-primary"></i>
+              <span>Editing Vacancy Information</span>
+            </h5>
+          </div>
+
+          <div class="card-body">
+            <form action="/admin/update/vacancy/" method="POST">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Vacancy Name</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="hidden" value="{{vacancy.id}}" name="vid" />
+                    <input type="text" value="{{vacancy.name}}" class="form-control" name="name" />
+                  </div>
+                </div>
+              </div>
+              <h3 class="heading-1">Requirements</h3>
+              {{#each requirements}}
+              <div class="row">
+                <div class="col-md-4">
+                  <label>{{sn}}. </label>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="hidden" value="{{id}}" name="vrid" />
+                    <input type="text" value="{{requirement}}" class="form-control" name="requirements"
+                      ariamultiline="true" />
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+
+              <div class="row">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
+                  <div class="form-group text-center">
+                    <button type="submit" class="btn btn-block btn-success">
+                      <i class="fas fa-save mr-1"></i>
+                      update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-footer">
+            <a href="/admin/vacancy/" class="btn btn-secondary">
+              <i class="fas fa-arrow-left"></i>
+              back
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

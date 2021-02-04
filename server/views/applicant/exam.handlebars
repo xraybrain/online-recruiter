@@ -1,0 +1,183 @@
+<div class="container-fluid my-4">
+  <div class="text-center">
+    <h3 class="text-muted">
+      <i class="fas fa-laptop text-primary"></i>
+      Computer Base Test
+    </h3>
+  </div>
+  <div class="row flex-wrap-reverse">
+    <div class="col-md-9 col-lg-8">
+      <div class="card">
+        <div id="question-pane">
+          <div class="card-body">
+            <h3 class="heading-3">
+              Question No.
+              <span id="qNo">{{add qn 1}}</span>
+            </h3>
+
+            <table class="table table-hover p-1">
+              <tr>
+                <td colspan="4" id="question" class="width-0">{{question.question}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="option-a" class="d-flex align-items-center">
+                    <span class="mr-2">a</span>
+                    <input type="radio" name="option" class="radio option" id="option-a" value="a"
+                      data-qid="{{question.id}}" {{#if (equals question.selectedOption "a" )}} checked="checked"
+                      {{/if}} />
+                    <span id="optionA" class="ml-2">{{question.optionA}}</span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="option-b" class="d-flex align-items-center">
+                    <span class="mr-2">b</span>
+                    <input type="radio" name="option" id="option-b" class="radio option" value="b"
+                      data-qid="{{question.id}}" {{#if (equals question.selectedOption "b" )}} checked="checked"
+                      {{/if}} />
+                    <span id="optionB" class="ml-2">{{question.optionB}}</span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="option-c" class="d-flex align-items-center">
+                    <span class="mr-2">c</span>
+                    <input type="radio" name="option" id="option-c" class="radio option" value="c"
+                      data-qid="{{question.id}}" {{#if (equals question.selectedOption "c" )}} checked="checked"
+                      {{/if}} />
+                    <span id="optionC" class="ml-2">{{question.optionC}}</span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="option-d">
+                    <span class="mr-2">d</span>
+                    <input type="radio" name="option" id="option-d" class="radio option" value="d"
+                      data-qid="{{question.id}}" {{#if (equals question.selectedOption "d" )}} checked="checked"
+                      {{/if}} />
+                    <span id="optionD" class="ml-2">{{question.optionD}}</span>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a href="javascript: void(0)" class="page-link" id="prev-question-btn">
+                Previous
+              </a>
+            </li>
+            <li class="page-item">
+              <a href="javascript: void(0)" class="page-link" id="next-question-btn">
+                Next
+              </a>
+            </li>
+            <li class="page-item">
+              <a href="javascript: void(0)" class="page-link" id="submit-exam">
+                Submit Test
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-4">
+      <div class="text-center p-2">
+        <div class="btn btn-outline-info" id="timer">
+          <span id="hour">0</span>:
+          <span id="minute">0</span>:
+          <span id="seconds">0</span>
+        </div>
+      </div>
+      <div class="col-md-10 mx-auto text-center">
+        {{#if user.pictureDir}}
+        <img src="{{user.pictureDir}}" alt="User avatar" class="passport">
+        {{else}}
+        <img src="/resources/img/user.png" alt="User avatar" class="passport">
+        {{/if}}
+      </div>
+
+      <h5 class="text-muted text-center my-3">Question Palette</h5>
+      <div class="palette">
+        <div class="row">
+          {{#each examQuestions}}
+          <div class="col-3 mb-1">
+            <a href="/applicant/exam/?sid={{subject_id}}&qn={{@index}}" class="btn _btn btn-sm btn-primary">
+              {{ add @index 1}}
+            </a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- to be used by js -->
+<div>
+  <input type="hidden" value="{{sid}}" id="sid" />
+  <input type="hidden" value="{{qn}}" id="qn" />
+  <input type="hidden" value="{{totalQn}}" id="total-question" />
+</div>
+
+<!-- Templates -->
+<script type="mustache/template" id="question-template">
+<div class="card-body">
+  <h3 class="heading-3">
+    Question No.
+    <span id="qNo">\{{qn}}</span>
+  </h3>
+
+  <table class="table table-hover">
+    <tr>
+      <td colspan="4" id="question" class="width-0">\{{question.question}}</td>
+    </tr>
+    <tr>
+      <td>
+        <label for="option-a" class="d-flex align-items-center">
+          <span class="mr-2">a</span>
+          <input type="radio" name="option" id="option-a" class="radio option" value="a" data-qid="\{{question.id}}" \{{#checked}}a\{{/checked}}/>
+          <span id="optionA" class="ml-2">\{{question.optionA}}</span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="option-b" class="d-flex align-items-center">
+          <span class="mr-2">b</span>
+          <input type="radio" name="option" id="option-b" class="radio option" value="b" data-qid="\{{question.id}}" \{{#checked}}b\{{/checked}}/>
+          <span id="optionB" class="ml-2">\{{question.optionB}}</span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="option-c" class="d-flex align-items-center">
+          <span class="mr-2">c</span>
+          <input type="radio" name="option" id="option-c" class="radio option" value="c"  data-qid="\{{question.id}}" \{{#checked}}c\{{/checked}}/>
+          <span id="optionC" class="ml-2">\{{question.optionC}}</span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="option-d">
+          <span class="mr-2">d</span>
+          <input type="radio" name="option" id="option-d" class="radio option" value="d" data-qid="\{{question.id}}" \{{#checked}}d\{{/checked}}/>
+          <span id="optionD" class="ml-2">\{{question.optionD}}</span>
+        </label>
+      </td>
+    </tr>
+  </table>
+</div>
+</script>
+
+<script src="/resources/js/examTimer.js"></script>

@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-md-9 col-lg-10">
+      <div class="container-fluid normal-height mt-1 no-pd">
+        <div class="card">
+          <div class="card-header bg-white mb-0 pb-1">
+            <h5 class="card-title text-capitalize mb-0 pb-0">
+              {{vacancy.name}}
+              Requirements
+            </h5>
+          </div>
+
+          <div class="card-body scroll">
+
+            <table class="table table-striped">
+              <tbody>
+                {{#each requirements}}
+                <tr>
+                  <td>{{sn}}. </td>
+                  <td>{{requirement}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <a href="/admin/vacancy/" class="btn btn-secondary">
+              <i class="fas fa-arrow-left"></i>
+              back
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

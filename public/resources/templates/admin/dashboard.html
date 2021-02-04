@@ -1,0 +1,83 @@
+<script type="mustache/template" id="add-candidate-tmpl">
+  <div class="form-panel mt-3">
+    <!-- file upload -->
+    <form class="form-inline col-md-10 mx-auto mb-2" enctype="multipart/form-data">
+      <div class="row">
+        <input type="file" name="candidates" id="candidates" class="hidden" />
+        <label for="candidates" class="btn btn-primary col-sm-390">Load file</label>
+      </div>
+    </form>
+    <!-- Register Student -->
+    <form class="col-md-10 mx-auto card" action="#" method="POST">
+      <fieldset>
+        <legend class="italic text-dark">Register Candidate</legend>
+        <div class="form-group">
+          <div class="row">
+            <input type="text" class="col-sm-4 ml-1 form-control" placeholder="First Name" value="{{text}}"/>
+            <input type="text" class="col-sm-3 ml-1 form-control" placeholder="Middle Name" />
+            <input type="text" class="col-sm-4 ml-1 form-control" placeholder="Last Name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <input type="text" class="col-sm-4 ml-1 form-control" placeholder="Email" />
+            <input type="text" class="col-sm-3 ml-1 form-control" placeholder="Password" />
+            <input type="text" class="col-sm-3 ml-1 form-control" placeholder="Confirm Password" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <input class="col-sm-2 ml-1 btn btn-primary" type="submit" />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</script>
+
+<script type="mustache/template" id="add-question-tmpl">
+  <!-- QuestionTemplate -->
+  <div class="form-panel mt-3">
+    <form class="form-inline col-md-10 mx-auto mb-2" enctype="multipart/form-data">
+      <div class="row">
+        <input type="file" name="candidates" id="candidates" class="hidden" />
+        <label for="candidates" class="btn btn-primary col-sm-390">Load file</label>
+      </div>
+    </form>
+    <form class="col-md-10 mx-auto card" action="#" method="POST">
+      <fieldset>
+        <legend class="italic text-dark">Add Question</legend>
+        <div class="form-group">
+          <div class="row">
+            <select class="col-sm-3 ml-1 form-control">
+              <option>Subject</option>
+            </select>
+            <input type="text" class="col-sm-3 ml-1 form-control" placeholder="question number" />
+            <textarea class="col-sm-4 ml-1 form-control" placeholder="Question" rows="1"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <textarea class="col-sm-4 ml-1 form-control" placeholder="Option A" rows="1"></textarea>
+            <textarea class="col-sm-3 ml-1 form-control" placeholder="Option B" rows="1"></textarea>
+            <textarea class="col-sm-3 ml-1 form-control" placeholder="Option C" rows="1"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <textarea class="col-sm-4 ml-1 form-control" placeholder="Option D" rows="1"></textarea>
+            <textarea class="col-sm-3 ml-1 form-control" placeholder="Answer" rows="1"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <input class="col-sm-2 ml-1 btn btn-primary" type="submit" />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </script>

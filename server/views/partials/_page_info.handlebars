@@ -1,0 +1,13 @@
+{{#if error}}
+<div class="alert alert-danger col-10 col-md-5 mt-2 msgbox">
+  <a href="#" class="close" data-dismiss="alert">&times;</a>
+  <p>{{error}}</p>
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="alert alert-success col-10 col-md-5  mt-2 msgbox">
+  <a href="#" class="close" data-dismiss="alert">&times;</a>
+  <p>{{{success}}}</p>
+</div>
+{{/if}}

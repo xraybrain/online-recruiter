@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-lg-10 col-md-9 normal-height bg-gray">
+      <div class="container-fluid my-2">
+        <form action="" method="GET">
+          <div class="input-group">
+            <input type="search" name="searchText" class="form-control" placeholder="Search for applicant by name" />
+            <div class="input-group-append">
+              <button type="submit" class="input-group-text">
+                Search
+                <i class="fas fa-search ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="card-title mb-0 pb-0 d-flex align-items-center">
+            <i class="fas fa-user-tag mr-1 text-primary"></i>
+            <span>
+              Registered Applicants
+            </span>
+          </h5>
+        </div>
+        <div class="card-body scroll">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  #Sn
+                </th>
+                <th>
+                  First Name
+                </th>
+                <th>
+                  Last Name
+                </th>
+                <th>
+                  Email Address
+                </th>
+                <th class="text-center">
+                  Status
+                </th>
+                <th class="text-right">
+                  Action
+                  <i class="fas fa-cog"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each applicants}}
+              <tr>
+                <td>{{sn}}. </td>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>
+                  {{emailAddress}}
+                </td>
+                <td class="text-center">
+                  {{#if isSubmitted}}
+                  completed
+                  {{else}}
+                  pending
+                  {{/if}}
+                </td>
+                {{#if isSubmitted}}
+                <td class="text-right">
+                  <a href="/admin/applicant/detail/{{id}}/" class="btn btn-sm btn-outline-success">
+                    view details
+                    <i class="fas fa-info-circle"></i>
+                  </a>
+                </td>
+                {{else}}
+                <td class="text-right">
+                  <a href="" class="btn btn-sm btn-outline-danger">
+                    decline
+                  </a>
+                </td>
+                {{/if}}
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

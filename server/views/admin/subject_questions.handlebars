@@ -1,0 +1,137 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-lg-10 col-md-9 normal-height bg-gray">
+      <div class="container-fluid mt-1 mb-1 no-pd">
+        <div class="row">
+          <div class="col-md-10">
+            <form class="container" action="/admin/upload/exam/question/" method="POST" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="fileUpload" class="btn btn-primary">Select Question File</label>
+                  <input type="file" class="hidden" name="fileToUpload" id="fileUpload" required />
+                  <input type="hidden" value="{{subject.id}}" name="sid" />
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-warning">
+                    Upload Questions
+                    <i class="fas fa-upload"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-2 ml-auto">
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#newModal">
+              <i class="fas fa-plus"></i>
+              <span>New Subject</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="card-title mb-0 pb-0 d-flex align-items-center">
+            <i class="fas fa-pencil-alt mr-1 text-primary"></i>
+            <span>
+              Subject Exam Questions
+            </span>
+          </h5>
+        </div>
+        <div class="card-body scroll">
+          <table class="table table-striped">
+            <tr>
+              <th class="text-muted">Question</th>
+              <td>{{examQuestion.question}}</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Option A</th>
+              <td>{{examQuestion.optionA}}</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Option B</th>
+              <td>{{examQuestion.optionB}}</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Option C</th>
+              <td>{{examQuestion.optionC}}</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Option D</th>
+              <td>{{examQuestion.optionD}}</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Answer</th>
+              <td>{{examQuestion.answer}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer">
+          <ul class="pagination justify-content-end">
+            <li class="page-item">
+              <a href="/admin/subject/questions/?sid={{sid}}&start={{prev}}" class="page-link">
+                &laquo;previous
+              </a>
+            </li>
+            <li class="page-item">
+              <a href="javascript: void(0)" class="page-link">
+                {{start}}
+              </a>
+            </li>
+            <div class="page-item">
+              <a href="/admin/subject/questions/?sid={{sid}}&start={{next}}" class="page-link">
+                next&raquo;
+              </a>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- The New Subject Modal -->
+<div class="modal fade" id="newModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Exam Subjects</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="p-1" action="/admin/save/subject/" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Subject Name" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="score" class="form-control" placeholder="Score per question" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="maximumAnswer" class="form-control" placeholder="Maximum Questions" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="examLimit" class="form-control" placeholder="Exam Limit in Minutes" />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-outline-success">
+              save
+              <i class="fas fa-save"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

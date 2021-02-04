@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    {{>_admin_sidebar}}
+    <div class="col-md-9 col-lg-10">
+      <div class="container-fluid normal-height mt-1 no-pd">
+        <div class="card my-3">
+          <div class="card-header mb-0 bg-white">
+            <h5 class="card-title mb-0 pb-0 d-flex align-items-center">
+              <i class="fas fa-edit mr-1 text-primary"></i>
+              <span>
+                Editing Subject Information
+              </span>
+            </h5>
+          </div>
+
+          <div class="card-body">
+            <form action="/admin/update/subject/" method="POST">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Subject Name</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="hidden" value="{{subject.id}}" name="id" />
+                    <input type="text" value="{{subject.name}}" class="form-control" name="name" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Score</label>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="number" value="{{subject.score}}" class="form-control" name="score" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Maximum Question</label>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="number" value="{{subject.maximumAnswer}}" class="form-control" name="maximumAnswer" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Exam Limit</label>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="number" value="{{subject.examLimit}}" class="form-control" name="examLimit" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-md-4 mx-auto">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-sm btn-success">
+                      <i class="fas fa-save"></i>
+                      Update Exam Subject
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-footer">
+            <a href="/admin/exams/mgt/" class="btn btn-secondary">
+              <i class="fas fa-arrow-left"></i>
+              back
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

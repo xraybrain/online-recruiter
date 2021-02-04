@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a href="/" class="navbar-brand">
+    <img src="/resources/img/logo.png" class="logo shadow" alt="logo" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="narbarNav"
+    aria-expanded="false" aria-lable="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mb-1">
+        <a class="nav-link text-light" href="/">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-home mr-2"></i>
+            Home
+          </div>
+        </a>
+      </li>
+      {{#if user}}
+      {{#if user.userType}}
+
+      {{else}}
+      <li class="nav-item mb-1 ml-1">
+        <a class="nav-link text-light" href="/admin/">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-th mr-2"></i>
+            Dashboard
+          </div>
+        </a>
+      </li>
+      {{/if}}
+      <li class="nav-item mb-1 ml-1">
+        <a class="nav-link text-light" href="/logout/">
+          <i class="fas fa-sign-out-alt text-danger"></i>
+          Logout
+        </a>
+      </li>
+      {{else}}
+      <li class="nav-item mb-1 ml-1">
+        <a class="nav-link text-light" href="/applicant/register/">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-pencil-alt mr-2"></i>
+            Start Application
+          </div>
+        </a>
+      </li>
+      <li class="nav-item mb-1 ml-1 dropdown">
+        <a class="nav-link text-light dropdown-toggle" href="#" data-toggle="dropdown">
+          <i class="fas fa-user-alt mr-2"></i>
+          Login
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right bg-dark">
+          <h5 class="dropdown-header text-light text-center">Log into account</h5>
+          <a href="/applicant/login/" class="dropdown-item text-warning">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-id-card mr-2"></i>
+              <span>Applicant account</span>
+            </div>
+          </a>
+          <a href="/admin/login/" class="dropdown-item text-warning">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-user-alt mr-2"></i>
+              <span>Admin account</span>
+            </div>
+          </a>
+        </div>
+      </li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
+<div class="after-nav"></div>

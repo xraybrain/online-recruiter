@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Online recruitment and examination management system" />
+  <meta name="keyword" content="online recruitment exam" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" type="text/css" href="/vendors/css/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="/vendors/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/vendors/bootstrap/css/bootstrap-grid.css" />
+  <link rel="stylesheet" type="text/css" href="/vendors/fontawesome-free-5.10.2-web/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="/vendors/css/sevensegment.css" />
+  <link rel="stylesheet" type="text/css" href="/vendors/css/calendar.css" />
+  <link rel="stylesheet" href="/vendors/css/theme.css">
+  <link rel="stylesheet" href="/vendors/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/resources/css/styles.css" />
+
+  <script src="/vendors/js/jquery-3.3.1.min.js"></script>
+  <script src="/vendors/js/moment.js"></script>
+
+  <title>{{pageTitle}}</title>
+</head>
+
+<body>
+  <div class="container-fluid no-pd">
+    <div class="">
+      {{>_nav}}
+      {{>_page_info}}
+      <div class="main-container">
+        {{{body}}}
+      </div>
+      {{>_footer}}
+    </div>
+  </div>
+  <script src="/vendors/js/jquery.form.js"></script>
+  <script src="/vendors/js/jquery-ui.js"></script>
+  <script src="/vendors/js/calendar.js"></script>
+  <script src="/vendors/js/mustache.min.js"></script>
+  <script src="/vendors/js/popper.js"></script>
+  <script src="/vendors/fontawesome-free-5.10.2-web/js/all.min.js"></script>
+  <script src="/vendors/bootstrap/js/bootstrap.js"></script>
+  <script src="/resources/js/main.js"></script>
+  {{#if examSummary}}
+  {{#each examSummary}}
+  <div class="alert alert-light col-12 col-md-6 msgbox">
+    <div>
+      <h5 class="text-muted">
+        Exam Summary
+      </h5>
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+    </div>
+    <table class="table table-hover table-bordered text-dark">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each examResults}}
+        <tr>
+          <td>{{subjectName}}</td>
+          <td>{{score}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <th>Total Score:</th>
+          <td>{{totalScore}}</td>
+        </tr>
+      </tbody>
+    </table>
+    {{examSummary.totalScore}}
+  </div>
+  {{/each}}
+  {{/if}}
+</body>
+
+</html>
